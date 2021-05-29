@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import { Counter } from './features/counter/Counter';
 import './App.css';
 import { counterSlice } from './features/counter/counterSlice';
-
+import CleanUp from "./CleanUp";
 const  App: React.FC = () => {
   const [status, setStatus] = useState<string | number>("text");
   const [input, setInput] = useState("");
@@ -15,7 +15,7 @@ const  App: React.FC = () => {
     setInput(e.target.value)
   }
   useEffect(()=> {
-    console.log("useEffect in App conp invoke")
+    console.log("useEffect in App conp invoke") 
     document.title = `current value is ${counter}`;
   },[counter]
   );
@@ -31,6 +31,9 @@ const  App: React.FC = () => {
         <input type="text" value={input} onChange={onChangeHundler}></input>
         <h4>{counter}</h4>
         <button onClick={() => setCounter((preCounter)=>preCounter+1)}>set counter</button>
+        
+        {display && <CleanUp></CleanUp>}
+        <button onClick={() => setDisplay(!display)}> toggle disp</button>
         <Counter />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
